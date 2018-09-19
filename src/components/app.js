@@ -1,24 +1,31 @@
 import React from 'react';
 import { connect } from 'react-redux'
+
 import ViewPuzzle from './view-puzzle';
 import AddPuzzle from './add-puzzle';
 import PuzzleList from './puzzle-list';
+import Header from './header'
+
+import {toggleAddState} from '../actions/add-state';
 
 export function App(props){
   let main;
 
   if(props.currentPuzzle){
-    main = <ViewPuzzle currentPuzzle={props.currentPuzzle}/>
+    main = <ViewPuzzle currentPuzzle={props.currentPuzzle} dispatch={props.dispatch}/>
   } else if (props.addPuzzle){
-    main = <AddPuzzle />
+    main = <AddPuzzle dispatch={props.dispatch}/>
   } else {
-    main = <PuzzleList puzzleList={props.puzzleList}/>
+    main = (
+      <div>
+        <button type='button' onClick={ () => props.dispatch(toggleAddState(true))}>Create New Word Search</button>
+        <PuzzleList puzzleList={props.puzzleList} dispatch={props.dispatch}/>
+      </div>
+    )
   }
   return (
     <div>
-      <header>
-        <h1>Heading Goes Here</h1>
-      </header>
+      <Header />
       <main>
         {main}
       </main>
