@@ -14,17 +14,22 @@ export default class AddPuzzle extends React.Component {
   onSubmit(event){
     event.preventDefault();
     const newTitle = event.target.getElementsByClassName('title-input')[0].value.trim();
+    const newLength = event.target.getElementsByClassName('size-input')[0].value;
+
     let wordArray = [];
     for(let i = 0; i < this.state.numOfWords; i++){
       wordArray.push(event.target.getElementsByClassName('word-input')[i].value.trim().toLowerCase().replace(/[^a-z]/g, ''));
     }
-    if(!newTitle){
+
+    if (!newTitle) {
       this.setState({errorMessage: 'Must provide a title.'})
-    } else if (wordArray.includes('')){
+    } else if (wordArray.includes('')) {
       this.setState({errorMessage: 'The provided words must be valid, containing only letters A-Z.'})
+    } else if (newLength < 5 || newLength > 50) {
+      this.setState({errorMessage: 'Check size. The word-search must be at least 5x5 and less than 50x50'})
     } else {
-      console.log({title: newTitle, words: wordArray});
-      //dispatch asynch action here with {title: newTitle, words: wordArray}
+      console.log({title: newTitle, words: wordArray, length: newLength});
+      //dispatch asynch action here with {title: newTitle, words: wordArray, length: newLength}
     }
   }
   
@@ -44,6 +49,9 @@ export default class AddPuzzle extends React.Component {
         <p>{this.state.errorMessage}</p>
         <label htmlFor='title-input'>Word Search Title: </label>
         <input type='text' name='title' id='title-input' className='title-input'/>
+
+        <label htmlFor='size-input'>Size: </label>
+        <input type='number' name='size' id='size-input' className='size-input'/>
 
         {wordInputs}
         <div>
