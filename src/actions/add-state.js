@@ -1,5 +1,4 @@
 import { SERVER_URL } from "../config";
-import { fetchOnePuzzle } from "./current-puzzles";
 
 
 export const TOGGLE_ADD_STATE = 'TOGGLE_ADD_STATE';
@@ -17,8 +16,17 @@ export const createNewPuzzle = puzzleData => dispatch => {
         },
         body: JSON.stringify(puzzleData)
     })
-    .then(res => res.json())
+    .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else {
+          return Promise.reject({status: res.status, message: res.statusText})
+        }
+    })
     .then(newId => {
-        dispatch(fetchOnePuzzle(newId.id))
+        return Promise.resolve(newId.id);
+    })
+    .catch(err => {
+        return Promise.reject(err);
     });
 }

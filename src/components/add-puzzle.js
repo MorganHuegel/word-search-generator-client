@@ -1,12 +1,15 @@
 import React from 'react';
 import { toggleAddState, createNewPuzzle } from '../actions/add-state';
+import { fetchOnePuzzle } from '../actions/current-puzzles';
+import Spinner from 'react-spinkit';
 
 export default class AddPuzzle extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       numOfWords: 1,
-      errorMessage: ''
+      errorMessage: '',
+      generatingPuzzle: false
     }
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -28,15 +31,28 @@ export default class AddPuzzle extends React.Component {
     } else if (newLength < 5 || newLength > 50) {
       this.setState({errorMessage: 'Check size. The word-search must be at least 5x5 and less than 50x50'})
     } else {
-      this.props.dispatch(createNewPuzzle({
-          title: newTitle,
-          words: wordArray,
-          length: newLength
-      }))
+      this.setState({generatingPuzzle: true}, () => {
+        return this.props.dispatch(createNewPuzzle({
+            title: newTitle,
+            words: wordArray,
+            length: newLength
+        }))
+        .then(id => this.props.dispatch(fetchOnePuzzle(id)))
+        .catch(err => this.setState({errorMessage: err.message, generatingPuzzle: false}))        
+      })
     }
   }
   
-  render(props){
+  render(){
+    if(this.state.generatingPuzzle){
+      return (
+        <div>
+          <Spinner name="ball-grid-beat" color="goldenrod" fadeIn="half"/>
+          <p>Generating Puzzle...</p>
+        </div>
+      )
+    }
+
     let wordInputs = [];
     for(let i = 0; i < this.state.numOfWords; i++){
       wordInputs.push(
