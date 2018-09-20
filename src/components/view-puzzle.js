@@ -1,6 +1,6 @@
 import React from 'react';
 import PuzzleRow from './view-puzzle-row';
-import { setCurrentPuzzle } from '../actions/current-puzzles';
+import { setCurrentPuzzle, deletePuzzle } from '../actions/current-puzzles';
 
 export default class ViewPuzzle extends React.Component{
   constructor(props){
@@ -12,7 +12,7 @@ export default class ViewPuzzle extends React.Component{
 
   deleteCurrent = () => {
     const id = document.getElementsByClassName('view-puzzle')[0].getAttribute('data-id');
-    console.log('DELETING WORD SEARCH WITH ID OF: ', id);
+    this.props.dispatch(deletePuzzle(id));
   }
 
 

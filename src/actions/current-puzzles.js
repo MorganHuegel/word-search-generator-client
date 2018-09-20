@@ -25,3 +25,17 @@ export const fetchAllPuzzles = () => dispatch => {
         .then(res => res.json())
         .then(puzzleList => dispatch(setPuzzleList(puzzleList)))
 }
+
+export const deletePuzzle = id => dispatch => {
+    return fetch(`${SERVER_URL}/puzzles/${id}/delete/`, {
+        method: 'DELETE'
+    })
+    .then(res => {
+        if (res.status === 204){
+            dispatch(setCurrentPuzzle(null))
+        } else {
+            return Promise.reject(res.json())
+        }
+    })
+    .catch(err => console.log(err))
+}
