@@ -39,3 +39,22 @@ export const deletePuzzle = id => dispatch => {
     })
     .catch(err => console.log(err))
 }
+
+
+export const editPuzzleTitle = updateData => dispatch => {
+    return fetch(`${SERVER_URL}/puzzles/${updateData.id}/edit/`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({"title": updateData.title})
+    })
+    .then(res => {
+        if(res.ok){
+            return dispatch(fetchOnePuzzle(updateData.id))
+        } else {
+            return Promise.reject(res)
+        }
+    })
+    .catch(err => console.log('Error:',err));
+}

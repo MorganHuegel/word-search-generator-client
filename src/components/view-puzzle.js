@@ -1,6 +1,6 @@
 import React from 'react';
 import PuzzleRow from './view-puzzle-row';
-import { setCurrentPuzzle, deletePuzzle } from '../actions/current-puzzles';
+import { setCurrentPuzzle, deletePuzzle, editPuzzleTitle } from '../actions/current-puzzles';
 
 export default class ViewPuzzle extends React.Component{
   constructor(props){
@@ -27,8 +27,8 @@ export default class ViewPuzzle extends React.Component{
       return;
     }
     const id = document.getElementsByClassName('view-puzzle')[0].getAttribute('data-id');
-    console.log('UPDATING TITLE FOR WORD SEARCH WITH ID OF: ', id, ' TO ', newTitle);
-    this.toggleEditState(false);
+    this.props.dispatch(editPuzzleTitle({id: id, title: newTitle}))
+    .then( () => this.toggleEditState(false));
   }
 
 

@@ -5,23 +5,7 @@ import { TOGGLE_ADD_STATE } from '../actions/add-state';
 
 const initialState = {
   currentPuzzle: null,
-  puzzleList: [
-    {
-      id: '000000000000000000000000', 
-      title: 'Animals', 
-      words: ['dog', 'cat', 'horse', 'snake', 'bunny']
-    },
-    {
-      id: '000000000000000000000001', 
-      title: 'Adjectives', 
-      words: ['large', 'pointy', 'small', 'fuzzy', 'yellow']
-    },
-    {
-      id: '000000000000000000000002', 
-      title: 'Occupations', 
-      words: ['doctor', 'plumber', 'grocer', 'soldier', 'author']
-    }
-  ],
+  puzzleList: [],
   addPuzzle: false
 };
 

@@ -19,7 +19,6 @@ export const createNewPuzzle = puzzleData => dispatch => {
     })
     .then(res => res.json())
     .then(newId => {
-        console.log('newId:', newId, typeof newId)
         dispatch(fetchOnePuzzle(newId.id))
     });
 }
