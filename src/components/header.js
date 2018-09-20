@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function(){
+export default function Header(){
   return (
     <header>
       <h1>Header Goes Here</h1>

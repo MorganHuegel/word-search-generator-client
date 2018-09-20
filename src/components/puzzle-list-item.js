@@ -1,7 +1,7 @@
 import React from 'react';
 import { fetchOnePuzzle } from '../actions/current-puzzles';
 
-export default function(props){
+export default function PuzzleListItem(props){
   const wordsInList = props.puzzle.words.map(word => <li key={word}>{word}</li>)
 
   function handleClick(event){

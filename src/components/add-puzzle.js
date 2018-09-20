@@ -1,5 +1,5 @@
 import React from 'react';
-import { toggleAddState } from '../actions/add-state';
+import { toggleAddState, createNewPuzzle } from '../actions/add-state';
 
 export default class AddPuzzle extends React.Component {
   constructor(props){
@@ -14,7 +14,7 @@ export default class AddPuzzle extends React.Component {
   onSubmit(event){
     event.preventDefault();
     const newTitle = event.target.getElementsByClassName('title-input')[0].value.trim();
-    const newLength = event.target.getElementsByClassName('size-input')[0].value;
+    const newLength = Number(event.target.getElementsByClassName('size-input')[0].value);
 
     let wordArray = [];
     for(let i = 0; i < this.state.numOfWords; i++){
@@ -28,8 +28,11 @@ export default class AddPuzzle extends React.Component {
     } else if (newLength < 5 || newLength > 50) {
       this.setState({errorMessage: 'Check size. The word-search must be at least 5x5 and less than 50x50'})
     } else {
-      console.log({title: newTitle, words: wordArray, length: newLength});
-      //dispatch asynch action here with {title: newTitle, words: wordArray, length: newLength}
+      this.props.dispatch(createNewPuzzle({
+          title: newTitle,
+          words: wordArray,
+          length: newLength
+      }))
     }
   }
   

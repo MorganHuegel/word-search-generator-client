@@ -28,7 +28,8 @@ const initialState = {
 export default function(state=initialState, action) {
   if(action.type === SET_CURRENT_PUZZLE){
     return Object.assign({}, state, {
-      currentPuzzle: action.puzzleData
+      currentPuzzle: action.puzzleData,
+      addPuzzle: false
     })
 
   } else if (action.type === TOGGLE_ADD_STATE) {
