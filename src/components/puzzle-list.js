@@ -1,18 +1,25 @@
 import React from 'react';
 import PuzzleListItem from './puzzle-list-item';
+import { fetchAllPuzzles } from '../actions/current-puzzles';
 
-export default function(props){
-  const lists = props.puzzleList.map(puzzle => {
-    return <PuzzleListItem puzzle={puzzle} key={puzzle.id} dispatch={props.dispatch}/>
-  });
+export default class PuzzleList extends React.Component {
+  componentWillMount(){
+    this.props.dispatch(fetchAllPuzzles())
+  }
 
-  return (
-    <div>
-      <h2>Available Word Searches</h2>
-      <ul>
-        {lists}
-      </ul>      
-    </div>
+  render(){
+    const lists = this.props.puzzleList.map(puzzle => {
+      return <PuzzleListItem puzzle={puzzle} key={puzzle.id} dispatch={this.props.dispatch}/>
+    });
 
-  )
+    return (
+      <div>
+        <h2>Available Word Searches</h2>
+        <ul>
+          {lists}
+        </ul>      
+      </div>
+    )
+  }
+
 }
