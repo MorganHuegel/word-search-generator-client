@@ -10,14 +10,3 @@ body, body * {
 }
 
 
-
-.puzzle-cell {
-  display: inline-block;
-  width: 30px;
-  text-align:center;
-}
-
-.puzzle-row {
-  margin-bottom: 10px;
-}
-

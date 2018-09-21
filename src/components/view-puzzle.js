@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/view-puzzle.css';
 import PuzzleRow from './view-puzzle-row';
 import { setCurrentPuzzle, deletePuzzle, editPuzzleTitle } from '../actions/current-puzzles';
 
@@ -36,7 +37,7 @@ export default class ViewPuzzle extends React.Component{
     let changeTitle = null;
     if(this.state.editTitle === true){
       changeTitle = (
-        <div>
+        <div className='change-title'>
           <label htmlFor='edit-title'>Enter New Title: </label>
           <input name='edit-title' id='edit-title'/>
           <button type='button' onClick={() => this.changeTitle()}>Change Title</button>
@@ -56,14 +57,18 @@ export default class ViewPuzzle extends React.Component{
           <button type='button' onClick={() => this.toggleEditState(true)}>Edit Title</button>
         </h2>
         {changeTitle}
-        {rows}
 
-        <ul>Words to Find:
+        <div className='puzzle-container' style={{maxWidth: 30 * this.props.currentPuzzle.puzzle.length}}>
+          {rows}
+        </div>
+        
+
+        <ul className='words'>Words to Find:
           {wordList}
         </ul>
         <div>
-          <button type='button' onClick={() => this.props.dispatch(setCurrentPuzzle(null))}>Back to List</button>
-          <button type='button' onClick={() => this.deleteCurrent()}>Delete Word Search</button>
+          <button type='button' onClick={() => this.props.dispatch(setCurrentPuzzle(null))} className='back'>Back to List</button>
+          <button type='button' onClick={() => this.deleteCurrent()} className='delete'>Delete Word Search</button>
         </div>
       </div>
       
