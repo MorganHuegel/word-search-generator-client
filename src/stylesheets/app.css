@@ -22,3 +22,8 @@ button.create-new {
   border: 1px solid gray;
   background-color: rgb(100, 220, 100);
 }
+
+button.create-new:hover, button.create-new:focus {
+  cursor: pointer;
+  background-color: rgb(90, 200, 90);
+}
