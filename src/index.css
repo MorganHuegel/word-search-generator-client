@@ -12,6 +12,7 @@ ul {
 .puzzle-list-item {
   text-align: center;
   width: 200px;
+  height: 150px;
   background-color: rgb(200, 200, 200);
   display: inline-block;
   margin-right: 20px;
