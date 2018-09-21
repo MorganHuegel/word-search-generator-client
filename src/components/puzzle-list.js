@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/puzzle-list.css';
 import PuzzleListItem from './puzzle-list-item';
 import { fetchAllPuzzles } from '../actions/current-puzzles';
 
@@ -13,7 +14,7 @@ export default class PuzzleList extends React.Component {
     });
 
     return (
-      <div>
+      <div className='puzzle-list'>
         <h2>Available Word Searches</h2>
         <ul>
           {lists}

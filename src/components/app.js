@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/app.css';
 import { connect } from 'react-redux'
 
 import ViewPuzzle from './view-puzzle';
@@ -18,7 +19,7 @@ export function App(props){
   } else {
     main = (
       <div>
-        <button type='button' onClick={ () => props.dispatch(toggleAddState(true))}>Create New Word Search</button>
+        <button type='button' onClick={ () => props.dispatch(toggleAddState(true))} className='create-new'>Create New Word Search</button>
         <PuzzleList puzzleList={props.puzzleList} dispatch={props.dispatch}/>
       </div>
     )
@@ -27,7 +28,9 @@ export function App(props){
     <div>
       <Header />
       <main>
-        {main}
+        <div className='main-container'>
+          {main}
+        </div>
       </main>
     </div>
   )

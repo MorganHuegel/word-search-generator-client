@@ -1,0 +1,38 @@
+.puzzle-list-item {
+  text-align: center;
+  width: 200px;
+  min-height: 180px;
+  background-color: rgb(200, 200, 200);
+  display: inline-block;
+  margin: 10px;
+  padding: 10px;
+  vertical-align: top;
+  margin-bottom: 20px;
+}
+
+.puzzle-list-item a {
+  text-decoration: none;
+  color: black;
+}
+
+.puzzle-list-item h3 {
+  font-size: 1.5em;
+  font-weight: bold;
+  background-color: rgb(210, 210, 210);
+  border-radius: 50%;
+  border: 1px solid red;
+}
+
+.word-list li {
+  font-style: italic;
+  margin-left: 25%;
+  text-align: left;
+  max-width: 75%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.word-list li:hover {
+  overflow: visible;
+}

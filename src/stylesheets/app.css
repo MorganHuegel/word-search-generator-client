@@ -1,0 +1,24 @@
+main {
+  height: 99vh;
+  width: 100vw;
+  max-width: 800px;
+  margin: 0 auto;
+  background: url("../images/search-clipart-background.png") center center / cover no-repeat;
+}
+
+.main-container {
+  background-color: rgba(255, 255, 255, 0.95);
+  height: 100%;
+}
+
+button.create-new {
+  width: 52%;
+  max-width: 400px;
+  padding: 10px;
+  height: 60px;
+  margin-bottom: 20px;
+  font-size: 100%;
+  border-radius: 5px;
+  border: 1px solid gray;
+  background-color: rgb(100, 220, 100);
+}

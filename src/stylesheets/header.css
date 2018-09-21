@@ -1,0 +1,13 @@
+header {
+  width: 100vw;
+  padding: 20px;
+}
+
+h1 {
+  display: inline-block;
+}
+
+header img {
+  width: 100px;
+  vertical-align: middle;
+}

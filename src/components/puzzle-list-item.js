@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/puzzle-list-item.css'
 import { fetchOnePuzzle } from '../actions/current-puzzles';
 
 export default function PuzzleListItem(props){
@@ -20,7 +21,7 @@ export default function PuzzleListItem(props){
       onClick={e => handleClick(e)}>
       <a href='/'>
         <h3>{props.puzzle.title}</h3>
-        <ul>
+        <ul className='word-list'>
           {wordsInList}
         </ul>
       </a>
