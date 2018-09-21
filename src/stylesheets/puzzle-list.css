@@ -1,3 +1,16 @@
 .puzzle-list h2 {
   padding: 10px;
 }
+
+.loading-spinner {
+  width: 200px;
+  margin: 0 auto;
+}
+
+.delay-entry {
+  display: none;
+}
+
+.loading-spinner p {
+  padding-top: 5px;
+}

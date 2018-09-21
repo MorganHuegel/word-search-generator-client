@@ -1,4 +1,5 @@
 import React from 'react';
+import '../stylesheets/add-puzzle.css';
 import { toggleAddState, createNewPuzzle } from '../actions/add-state';
 import { fetchOnePuzzle } from '../actions/current-puzzles';
 import Spinner from 'react-spinkit';
@@ -12,6 +13,13 @@ export default class AddPuzzle extends React.Component {
       generatingPuzzle: false
     }
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    if (this.state.generatingPuzzle) {
+      let p = document.getElementsByClassName('delay-entry')[0];
+      setTimeout(() => p.className -= 'delay-entry', 600);
+    }
   }
 
   onSubmit(event){
@@ -46,9 +54,9 @@ export default class AddPuzzle extends React.Component {
   render(){
     if(this.state.generatingPuzzle){
       return (
-        <div>
+        <div className='loading-spinner'>
           <Spinner name="ball-grid-beat" color="goldenrod" fadeIn="half"/>
-          <p>Generating Puzzle...</p>
+          <p className='delay-entry'>Generating Puzzle...</p>
         </div>
       )
     }
@@ -56,7 +64,7 @@ export default class AddPuzzle extends React.Component {
     let wordInputs = [];
     for(let i = 0; i < this.state.numOfWords; i++){
       wordInputs.push(
-        <div key={`input-word-${i}`}>
+        <div key={`input-word-${i}`} className='word-container'>
           <label htmlFor={`input-word-${i}`}>Word {i + 1}: </label>
           <input name={`input-word-${i}`} id={`input-word-${i}`} className='word-input'/>
         </div>
@@ -64,24 +72,26 @@ export default class AddPuzzle extends React.Component {
     }
 
     return (
-      <form name='add-puzzle' onSubmit={e => this.onSubmit(e)}>
-        <p>{this.state.errorMessage}</p>
+      <form name='add-puzzle' onSubmit={e => this.onSubmit(e)} className='add-puzzle'>
+        <p className='error-message'>{this.state.errorMessage}</p>
         <label htmlFor='title-input'>Word Search Title: </label>
         <input type='text' name='title' id='title-input' className='title-input'/>
 
-        <label htmlFor='size-input'>Size: </label>
-        <input type='number' name='size' id='size-input' className='size-input'/>
+        <div>
+          <label htmlFor='size-input'>Size: </label>
+          <input type='number' name='size' id='size-input' className='size-input'/>
+        </div>
 
         {wordInputs}
         <div>
           <button type='button' 
             onClick={e => {
-              if(this.state.numOfWords <= 5){
+              if(this.state.numOfWords <= 7){
                 this.setState({numOfWords: this.state.numOfWords + 1, errorMessage: ''});
               } else {
-                this.setState({errorMessage: 'Cannot have more than 6 words in a puzzle'})
+                this.setState({errorMessage: 'Cannot have more than 8 words in a puzzle'})
               }
-            }}>Add Word</button>
+            }} className='add-word'>Add Word</button>
           <button type='button'
             onClick={e => {
               if(this.state.numOfWords > 1){
@@ -89,13 +99,13 @@ export default class AddPuzzle extends React.Component {
               } else {
                 this.setState({errorMessage: 'Must have at least 1 word'})
               }
-            }}>Remove Word</button>
+            }} className='remove-word'>Remove Word</button>
         </div>
 
         <div>
-          <button type='button' onClick={() => this.props.dispatch(toggleAddState(false))}>Return to Puzzle List</button>
-          <button type='reset'>Clear Form</button>
-          <button type='submit'>Create New Puzzle</button>        
+          <button type='submit' className='add-form-button submit'>Create New Puzzle</button>        
+          <button type='reset' className='add-form-button reset'>Clear Form</button>
+          <button type='button' onClick={() => this.props.dispatch(toggleAddState(false))} className='add-form-button return'>Return to Puzzle List</button>
         </div>
 
       </form>

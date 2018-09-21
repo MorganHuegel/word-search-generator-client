@@ -15,6 +15,11 @@
   color: black;
 }
 
+.puzzle-list-item:hover {
+  cursor: pointer;
+  background-color: rgb(180, 180, 180);
+}
+
 .puzzle-list-item h3 {
   font-size: 1.5em;
   font-weight: bold;
@@ -25,9 +30,7 @@
 
 .word-list li {
   font-style: italic;
-  margin-left: 25%;
   text-align: left;
-  max-width: 75%;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
