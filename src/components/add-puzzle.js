@@ -15,7 +15,7 @@ export default class AddPuzzle extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
-  componentDidMount(){
+  componentDidUpdate(){
     if (this.state.generatingPuzzle) {
       let p = document.getElementsByClassName('delay-entry')[0];
       setTimeout(() => p.className -= 'delay-entry', 600);
