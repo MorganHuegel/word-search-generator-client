@@ -5,7 +5,7 @@
 
 [Live App](https://word-search-generator.netlify.com/) on Netlify
 
-[Server-Side Repo]()
+[Server-Side Repo](https://github.com/MorganHuegel/word-search-generator-server)
 
 [Algorithm for Generating Puzzles](https://github.com/MorganHuegel/word-search-algorithm)
 
