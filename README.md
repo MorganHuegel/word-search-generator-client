@@ -1,9 +1,9 @@
 # Word Search Generator
 
 
-### Live App
+### Deployment
 
-[Live App](https://word-search-generator.netlify.com/)
+[Live App](https://word-search-generator.netlify.com/) on Netlify
 
 [Server-Side Repo]()
 
@@ -18,6 +18,27 @@ Word search generator allows users to input a list of words and the dimensions o
 
 
 ### Screenshots
+
+###### Landing Page
+
+![Screenshot of Landing Page](https://github.com/MorganHuegel/word-search-generator-client/blob/master/src/images/screenshot-viewing-landing.png?raw=true)
+
+###### Add Word-Search Page
+
+![Screenshot of Adding Word-Search](https://github.com/MorganHuegel/word-search-generator-client/blob/master/src/images/screenshot-adding.png?raw=true)
+
+###### Viewing a Small Puzzle
+
+![Screenshot of Smaller Puzzle](https://github.com/MorganHuegel/word-search-generator-client/blob/master/src/images/screenshot-viewing-small.png?raw=true)  
+
+###### Viewing a Larger Puzzle
+
+![Screenshot of Larger Puzzle](https://github.com/MorganHuegel/word-search-generator-client/blob/master/src/images/screenshot-viewing-big.png?raw=true)
+
+###### Mobile Views
+
+![Screenshot of Mobile View](https://github.com/MorganHuegel/word-search-generator-client/blob/master/src/images/screenshot-viewing-mobile-2.png?raw=true)
+
 
 
 ### Tech-Stack
