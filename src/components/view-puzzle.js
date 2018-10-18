@@ -1,6 +1,7 @@
 import React from 'react';
 import '../stylesheets/view-puzzle.css';
 import PuzzleRow from './view-puzzle-row';
+import WordsToFindList from './words-to-find-list';
 import { setCurrentPuzzle, deletePuzzle, editPuzzleTitle } from '../actions/current-puzzles';
 
 export default class ViewPuzzle extends React.Component{
@@ -28,7 +29,7 @@ export default class ViewPuzzle extends React.Component{
       return;
     }
     const id = document.getElementsByClassName('view-puzzle')[0].getAttribute('data-id');
-    this.props.dispatch(editPuzzleTitle({id: id, title: newTitle}))
+    return this.props.dispatch(editPuzzleTitle({id: id, title: newTitle}))
     .then( () => this.toggleEditState(false));
   }
 
@@ -49,7 +50,6 @@ export default class ViewPuzzle extends React.Component{
     const rows = this.props.currentPuzzle.puzzle.map( (row, index) => {
       return <PuzzleRow values={row} key={index} rowNum={index}/>
     })
-    const wordList = this.props.currentPuzzle.words.map(word => <li key={word}>{word}</li>)
 
     return (
       <div className='view-puzzle' data-id={this.props.currentPuzzle.id}>
@@ -63,9 +63,7 @@ export default class ViewPuzzle extends React.Component{
         </div>
         
 
-        <ul className='words'>Words to Find:
-          {wordList}
-        </ul>
+        <WordsToFindList wordList={this.props.currentPuzzle.words}/>
         <div>
           <button type='button' onClick={() => this.props.dispatch(setCurrentPuzzle(null))} className='back'>Back to List</button>
           <button type='button' onClick={() => this.deleteCurrent()} className='delete'>Delete Word Search</button>

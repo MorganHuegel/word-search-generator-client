@@ -1,12 +1,28 @@
 import React from 'react';
 
-export default function(props){
-  return (
-    <span className='puzzle-cell' style={{
-        width:`${100/props.length}%`,
-        maxWidth: 30
-      }}>
-      {props.letter}
-    </span>
-  )
+export default class Cell extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      selected: false
+    }
+  }
+
+  toggleSelected = () => {
+    this.setState({selected: !this.state.selected})
+  }
+  
+  render(){
+    const selected = this.state.selected ? 'selected' : null;
+    return (
+      <span className={`puzzle-cell ${selected}`} style={{
+          width:`${100/this.props.length}%`,
+          maxWidth: 30
+        }}
+        data-position={this.props.position}
+        onClick={(e) => this.toggleSelected()}>
+        {this.props.letter}
+      </span>
+    )
+  }
 }

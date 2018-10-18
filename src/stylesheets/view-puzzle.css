@@ -24,6 +24,13 @@
   font-weight: normal;
   font-size: 1em;
 }
+.word-to-find:hover {
+  cursor: not-allowed;
+  /* cursor: url('../checkbox.png'), not-allowed; */
+}
+.word-to-find.found {
+  text-decoration: line-through;
+}
 
 
 
@@ -32,6 +39,9 @@
 .view-puzzle .puzzle-container {
   background-color: rgb(245, 245, 245);
   margin: 0 auto;
+}
+.puzzle-container:hover {
+  cursor: cell;
 }
 
 .puzzle-row {
@@ -44,6 +54,11 @@
   display: inline-block;
   max-width: 30px;
   text-align: center;
+  height: 100%;
+}
+
+.puzzle-cell.selected {
+  background-color: yellow;
 }
 
 
