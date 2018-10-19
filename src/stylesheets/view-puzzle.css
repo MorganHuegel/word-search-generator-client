@@ -25,11 +25,26 @@
   font-size: 1em;
 }
 .word-to-find:hover {
-  cursor: not-allowed;
+  cursor: pointer;
   /* cursor: url('../checkbox.png'), not-allowed; */
 }
 .word-to-find.found {
   text-decoration: line-through;
+}
+
+.words .hint-button:hover {
+  cursor: pointer;
+}
+.words .hint-button {
+  padding: 1px;
+  width: 72px;
+  margin-left: 15px;
+  background: transparent;
+  text-shadow: 1px 0 3px white;
+}
+.words .hint-button.showing {
+  text-shadow: 0px 0px 2px white;
+  background-color: rgb(200, 200, 255);
 }
 
 
@@ -62,7 +77,7 @@
 }
 
 .puzzle-cell.hint {
-  background-color: rgb(150, 150, 225);
+  background-color: rgb(200, 200, 255);
 }
 .puzzle-cell.hint.selected {
   background-color: rgb(100, 255, 100);

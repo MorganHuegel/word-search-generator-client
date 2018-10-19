@@ -14,18 +14,19 @@ export default class WordToFind extends React.Component {
     this.setState({found: !this.state.found})
   }
 
-  toggleHint = () => {
+  toggleHint = (e) => {
+    e.persist();
     if (!this.state.hint) {
       const word = this.props.word;
       this.props.dispatch(getPuzzleHint(word, this.props.currentPuzzle))
-      .then(hint => this.setState({hint: hint[0]}))
+      .then(hint => this.setState({hint: hint[0]}, () => e.target.classList.add('showing')))
       .catch(err => console.error(err));
     } else {
       const rowNum = String(this.state.hint.rowNum);
       const colNum = String(this.state.hint.colNum);
       const cell = document.querySelectorAll(`[data-rownum='${rowNum}'][data-colnum='${colNum}']`)[0];
       cell.classList.remove('hint');
-      this.setState({hint: null})
+      this.setState({hint: null}, () => e.target.classList.remove('showing'));
     }
   }
 
@@ -46,7 +47,7 @@ export default class WordToFind extends React.Component {
         <span className={'word-to-find ' + found} onClick={() => this.toggleFound()}>
           {this.props.word}
         </span>
-        <button type='button' className='hint-button' onClick={() => this.toggleHint()}>{buttonMessage}</button>
+        <button type='button' className='hint-button' onClick={e => this.toggleHint(e)}>{buttonMessage}</button>
       </li>
     )
   }
