@@ -63,7 +63,7 @@ export default class ViewPuzzle extends React.Component{
         </div>
         
 
-        <WordsToFindList wordList={this.props.currentPuzzle.words}/>
+        <WordsToFindList wordList={this.props.currentPuzzle.words} dispatch={this.props.dispatch} currentPuzzle={this.props.currentPuzzle.puzzle}/>
         <div>
           <button type='button' onClick={() => this.props.dispatch(setCurrentPuzzle(null))} className='back'>Back to List</button>
           <button type='button' onClick={() => this.deleteCurrent()} className='delete'>Delete Word Search</button>

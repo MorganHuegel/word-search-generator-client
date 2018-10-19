@@ -19,7 +19,8 @@ export default class Cell extends React.Component {
           width:`${100/this.props.length}%`,
           maxWidth: 30
         }}
-        data-position={this.props.position}
+        data-rownum={this.props.position.rowNum}
+        data-colnum={this.props.position.colNum}
         onClick={(e) => this.toggleSelected()}>
         {this.props.letter}
       </span>

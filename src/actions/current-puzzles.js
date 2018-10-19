@@ -58,3 +58,27 @@ export const editPuzzleTitle = updateData => dispatch => {
     })
     .catch(err => console.log('Error:',err));
 }
+
+
+
+
+export const getPuzzleHint = (word, puzzle) => dispatch => {
+  return fetch(`${SERVER_URL}/puzzles/solve/`, {
+    method: 'POST',
+    body: JSON.stringify({
+      word, puzzle
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(apiRes => {
+    if(apiRes.ok) {
+      return apiRes.json();
+    } else {
+      return Promise.reject(apiRes.json());
+    }
+  })
+  .then(res => Promise.resolve(res))
+  .catch(err => Promise.reject(err));
+}
