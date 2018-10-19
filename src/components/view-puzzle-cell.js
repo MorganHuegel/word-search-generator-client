@@ -1,29 +1,24 @@
 import React from 'react';
 
-export default class Cell extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      selected: false
+export default function Cell(props) {
+  function toggleSelected() {
+    const cell = document.querySelectorAll(`[data-rownum='${props.position.rowNum}'][data-colnum='${props.position.colNum}']`)[0];
+    if(!cell.classList.contains('selected')){
+      cell.classList.add('selected')
+    } else {
+      cell.classList.remove('selected')
     }
   }
 
-  toggleSelected = () => {
-    this.setState({selected: !this.state.selected})
-  }
-  
-  render(){
-    const selected = this.state.selected ? 'selected' : null;
-    return (
-      <span className={`puzzle-cell ${selected}`} style={{
-          width:`${100/this.props.length}%`,
-          maxWidth: 30
-        }}
-        data-rownum={this.props.position.rowNum}
-        data-colnum={this.props.position.colNum}
-        onClick={(e) => this.toggleSelected()}>
-        {this.props.letter}
-      </span>
-    )
-  }
+  return (
+    <span className={`puzzle-cell`} style={{
+        width:`${100/props.length}%`,
+        maxWidth: 30
+      }}
+      data-rownum={props.position.rowNum}
+      data-colnum={props.position.colNum}
+      onClick={(e) => toggleSelected()}>
+      {props.letter}
+    </span>
+  )
 }

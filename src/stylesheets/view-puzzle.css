@@ -58,9 +58,15 @@
 }
 
 .puzzle-cell.selected {
-  background-color: yellow;
+  background-color: rgb(225, 225, 100);
 }
 
+.puzzle-cell.hint {
+  background-color: rgb(150, 150, 225);
+}
+.puzzle-cell.hint.selected {
+  background-color: rgb(100, 255, 100);
+}
 
 
 
