@@ -26,7 +26,6 @@
 }
 .word-to-find:hover {
   cursor: pointer;
-  /* cursor: url('../checkbox.png'), not-allowed; */
 }
 .word-to-find.found {
   text-decoration: line-through;

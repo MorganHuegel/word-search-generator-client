@@ -103,9 +103,9 @@ export default class AddPuzzle extends React.Component {
         </div>
 
         <div>
-          <button type='submit' className='add-form-button submit'>Create New Puzzle</button>        
-          <button type='reset' className='add-form-button reset'>Clear Form</button>
           <button type='button' onClick={() => this.props.dispatch(toggleAddState(false))} className='add-form-button return'>Return to Puzzle List</button>
+          <button type='reset' className='add-form-button reset'>Clear Form</button>
+          <button type='submit' className='add-form-button submit'>Create New Puzzle</button>        
         </div>
 
       </form>
