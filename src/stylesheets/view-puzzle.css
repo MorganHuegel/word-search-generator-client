@@ -1,4 +1,9 @@
 /*--------- TITLE ------------ */
+.view-puzzle .playing-instructions {
+  font-size: 18px;
+  width: 90%;
+  margin: 0 auto 30px auto;
+}
 
 .view-puzzle h2 {
   margin-bottom: 20px;
@@ -13,10 +18,16 @@
   margin-bottom: 20px;
 }
 
+.view-puzzle .edit-title-change {
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
 .view-puzzle ul.words {
   font-style: italic;
   font-weight: bold;
   font-size: 1.3em;
+  margin: 20px 0;
 }
 
 .view-puzzle ul.words li {
@@ -36,10 +47,9 @@
 }
 .words .hint-button {
   padding: 1px;
-  width: 72px;
+  width: 45px;
   margin-left: 15px;
   background: transparent;
-  text-shadow: 1px 0 3px white;
 }
 .words .hint-button.showing {
   text-shadow: 0px 0px 2px white;
@@ -75,25 +85,40 @@
   background-color: rgb(225, 225, 100);
 }
 
-.puzzle-cell.hint {
+.puzzle-cell.hint, .puzzle-cell.solve {
   background-color: rgb(200, 200, 255);
 }
-.puzzle-cell.hint.selected {
+.puzzle-cell.hint.selected, .puzzle-cell.solve.selected {
   background-color: rgb(100, 255, 100);
 }
 
 
 
 /*--------- BUTTONS ------------ */
+.view-puzzle button.solve, .view-puzzle button.back, .view-puzzle button.delete {
+  display: block;
+  margin: 30px auto;
+}
+
 
 .view-puzzle button {
   padding: 5px;
   border-radius: 5px;
 }
+
+.view-puzzle button.solve {
+  font-size: 16px;
+  background-color: rgb(200, 200, 255);
+}
+.view-puzzle button.solve:hover, .view-puzzle button.solve:focus {
+  cursor: pointer;
+  background-color: rgb(180, 180, 235);
+}
+
 .view-puzzle button.back {
+  font-size: 16px;
   color: white;
   background-color: rgb(90, 90, 190);
-  margin: 10px 40px 30px 0;
 }
 
 .view-puzzle button.back:hover, .view-puzzle button.back:focus {
@@ -102,6 +127,7 @@
 }
 
 .view-puzzle button.delete {
+  font-size: 16px;
   color: white;
   background-color: rgb(190, 90, 90);
 }
@@ -109,4 +135,11 @@
 .view-puzzle button.delete:hover, .view-puzzle button.delete:focus {
   cursor: pointer;
   background-color: rgb(220, 120, 120);
+}
+
+@media only screen and (min-width: 600px) {
+  .view-puzzle button.solve, .view-puzzle button.back, .view-puzzle button.delete {
+    display: initial;
+    margin: 30px 15px;
+  }
 }

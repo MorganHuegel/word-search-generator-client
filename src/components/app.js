@@ -13,12 +13,13 @@ export function App(props){
   let main;
 
   if(props.currentPuzzle){
-    main = <ViewPuzzle currentPuzzle={props.currentPuzzle} dispatch={props.dispatch}/>
+    main = <ViewPuzzle currentPuzzle={props.currentPuzzle} dispatch={props.dispatch} />
   } else if (props.addPuzzle){
     main = <AddPuzzle dispatch={props.dispatch}/>
   } else {
     main = (
       <div>
+        <p className='landing-instructions'>Create, solve, and check word-searches! To play, click on a pre-existing puzzle or create your own.</p>
         <button type='button' onClick={ () => props.dispatch(toggleAddState(true))} className='create-new'>Create New Word Search</button>
         <PuzzleList puzzleList={props.puzzleList} dispatch={props.dispatch}/>
       </div>
@@ -40,7 +41,7 @@ function mapStateToProps(state){
   return {
     currentPuzzle: state.currentPuzzle,
     addPuzzle: state.addPuzzle,
-    puzzleList: state.puzzleList
+    puzzleList: state.puzzleList,
   }
 }
 

@@ -41,13 +41,12 @@ export default class WordToFind extends React.Component {
 
     //Rendering Component
     const found = this.state.found ? 'found' : '';
-    const buttonMessage = this.state.hint ? 'Hide Hint' : 'Get Hint'
     return (
       <li>
         <span className={'word-to-find ' + found} onClick={() => this.toggleFound()}>
           {this.props.word}
         </span>
-        <button type='button' className='hint-button' onClick={e => this.toggleHint(e)}>{buttonMessage}</button>
+        <button type='button' className='hint-button' onClick={e => this.toggleHint(e)}>Hint</button>
       </li>
     )
   }

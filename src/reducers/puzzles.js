@@ -6,14 +6,15 @@ import { TOGGLE_ADD_STATE } from '../actions/add-state';
 const initialState = {
   currentPuzzle: null,
   puzzleList: [],
-  addPuzzle: false
+  addPuzzle: false,
 };
 
 export default function(state=initialState, action) {
   if(action.type === SET_CURRENT_PUZZLE){
     return Object.assign({}, state, {
       currentPuzzle: action.puzzleData,
-      addPuzzle: false
+      addPuzzle: false,
+      answers: []
     })
 
   } else if (action.type === TOGGLE_ADD_STATE) {
@@ -25,8 +26,10 @@ export default function(state=initialState, action) {
     return Object.assign({}, state, {
         puzzleList: action.puzzleList
     })
+
+  } else {
+    return state;
   }
-  return state;
 }
 
 
