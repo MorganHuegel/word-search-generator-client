@@ -8,32 +8,36 @@ export default class ViewPuzzle extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      editTitle: false
+      editTitle: false,
+      showingAnswers: false
     }
   }
 
 
   showAnswers = () => {
-    const answers = [];
-    const asyncActions = [];
-    this.props.currentPuzzle.words.forEach(word => {
-      asyncActions.push(
-        this.props.dispatch(getPuzzleHint(word, this.props.currentPuzzle.puzzle))
-          .then(hintArray => answers.push(hintArray))
-          .catch(err => console.error(err))
-      );
-    })
-    return Promise.all(asyncActions)
-      .then(() => {
-        answers.forEach(positionArray => {
-          positionArray.forEach(position => {
-            const cell = document.querySelectorAll(`[data-rownum='${position.rowNum}'][data-colnum='${position.colNum}']`)[0];
-            if (cell.classList.contains('solve')) cell.classList.remove('solve');
-            else cell.classList.add('solve');
-          });
-        });
-        
+    this.setState({showingAnswers: !this.state.showingAnswers}, () => {
+      const answers = [];
+      const asyncActions = [];
+      this.props.currentPuzzle.words.forEach(word => {
+        asyncActions.push(
+          this.props.dispatch(getPuzzleHint(word, this.props.currentPuzzle.puzzle))
+            .then(hintArray => answers.push(hintArray))
+            .catch(err => console.error(err))
+        );
       })
+      return Promise.all(asyncActions)
+        .then(() => {
+          answers.forEach(positionArray => {
+            positionArray.forEach(position => {
+              const cell = document.querySelectorAll(`[data-rownum='${position.rowNum}'][data-colnum='${position.colNum}']`)[0];
+              if (this.state.showingAnswers) cell.classList.add('solve');
+              else cell.classList.remove('solve');
+            });
+          });
+          
+        })
+    })
+    
   }
 
 
@@ -78,6 +82,8 @@ export default class ViewPuzzle extends React.Component{
       return <PuzzleRow values={row} key={index} rowNum={index} answers={this.props.answers}/>
     })
 
+    let showAnswerButton = this.state.showingAnswers ? 'Hide Answers' : 'Show Answers'
+
     return (
       <div className='view-puzzle' data-id={this.props.currentPuzzle.id}>
         <p className='playing-instructions'>Click on the Word-Search to highlight letters! Cross-off words in the list as you find them. Click "HINT" if you're stuck.</p>
@@ -93,7 +99,7 @@ export default class ViewPuzzle extends React.Component{
 
         <WordsToFindList wordList={this.props.currentPuzzle.words} dispatch={this.props.dispatch} currentPuzzle={this.props.currentPuzzle.puzzle}/>
         <div>
-          <button type='button' onClick={() => this.showAnswers()} className='solve'>Show Answers</button>
+          <button type='button' onClick={() => this.showAnswers()} className='solve'>{showAnswerButton}</button>
           <button type='button' onClick={() => this.props.dispatch(setCurrentPuzzle(null))} className='back'>Back to List</button>
           <button type='button' onClick={() => this.deleteCurrent()} className='delete'>Delete Word Search</button>
         </div>
